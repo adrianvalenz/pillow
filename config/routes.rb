@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  get 'welcome', to: 'welcome#index'
   #get 'user_sessions/new'
   #get 'user_sessions/create'
   #get 'user_sessions/destroy'

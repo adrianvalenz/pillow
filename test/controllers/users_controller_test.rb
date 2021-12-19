@@ -1,8 +1,16 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  include Sorcery::TestHelpers::Rails::Integration
+
   setup do
     @user = users(:one)
+    login_user(@user)
+  end
+
+  def login_user(user)
+    post login_path, params: { email: user.email, password: 'secret' }
+    follow_redirect!
   end
 
   test "should get index" do
@@ -17,7 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user" do
     assert_difference("User.count") do
-      post users_url, params: { user: { crypted_password: @user.crypted_password, email: @user.email, salt: @user.salt } }
+      post users_url, params: { user: { password: 'secret', email: 'admin3@example.com', password_confirmation: 'secret' } }
     end
 
     assert_redirected_to user_url(User.last)
