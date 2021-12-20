@@ -1,18 +1,11 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
+  include Custom::TestHelpers::Sorcery
+
   setup do
     @user = users(:one)
     @capyuser = User.new(email: "capyuser@example.com", password: "capysecret")
-  end
-
-  # create a setup where I log in user
-  def sign_in_user(user)
-    visit login_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: 'secret'
-    click_on "Login"
-    assert_text "Login successful"
   end
 
   test "visiting the index" do

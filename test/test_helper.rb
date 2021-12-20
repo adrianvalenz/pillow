@@ -11,5 +11,18 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   #
+  module Custom
+    module TestHelpers
+      module Sorcery
+        def sign_in_user(user)
+          visit login_path
+          fill_in "Email", with: user.email
+          fill_in "Password", with: 'secret'
+          click_on "Login"
+          assert_text "Login successful"
+        end
+      end
+    end
+  end
 end
 

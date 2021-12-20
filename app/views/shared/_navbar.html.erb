@@ -1,0 +1,23 @@
+
+<div class="nav">
+  <div class="nav_logo">
+    <%= link_to root_path do %>
+      <%= image_tag "logotype.svg", class: 'nav_logo_image' %>
+    <% end %>
+  </div>
+  <div class="nav_session_portal">
+    <%= link_to "Welcome", welcome_path %>
+    <% if current_user %>
+      <%= link_to "Edit user profile", edit_user_path(current_user.id) %>
+      <%= button_to "Logout", :logout, method: :post, class: 'link' %>
+    <% else %>
+      <%= link_to "Sign in", :login %> /
+      <%= link_to "Register", new_user_path %> 
+    <% end %>
+  </div>
+</div>
+
+<div class="flash_notices">
+  <% if notice %><p id="notice"><%= flash[:notice] %></p><% end %>
+  <% if alert %><p id="alert"><%= flash[:alert] %></p><% end %>
+</div>

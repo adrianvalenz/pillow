@@ -13,3 +13,73 @@
  *= require_tree .
  *= require_self
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+
+:root {
+  --sans: 'Josefin Sans', sans-serif;
+  --sky: #3f89a8;
+  --navy: #18323b;
+  --frost: #F3FDFD;
+  --slate: #28292C;
+}
+
+html,
+body {
+  background-color: var(--frost);
+  color: var(--slate);
+  font-family: var(--sans);
+  margin: 0;
+  padding: 0;
+}
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+.nav {
+  background-color: var(--navy);
+  color: var(--frost);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.nav_logo {
+  grid-column: 1 / 4;
+}
+
+.nav_logo_image {
+  width: 100%;
+  max-width: 150px;
+}
+
+.nav_session_portal {
+  align-items: center;
+  grid-column: 4 / -1;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+}
+
+.nav_session_portal a {
+  color: var(--frost);
+  text-decoration: none;
+}
+
+.flash_notices {
+  display: grid;
+  grid-template-column: 1fr;
+  text-align: center;
+}
+
+.link {
+  align-items: none;
+  background-color: transparent;
+  border: 0;
+  color: var(--frost);
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 1rem;
+  padding: 0;
+  text-align: left;
+}
