@@ -1,5 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
+<span><%= @user.email %>'s page</span>
 <%= render @user %>
 
 <div>
@@ -8,3 +9,12 @@
 
   <%= button_to "Destroy this user", @user, method: :delete %>
 </div>
+
+<hr>
+
+<h2>User listings</h2>
+
+<% @listings.each do |listing| %>
+  <%= link_to "Edit listing: #{listing.title}", edit_user_listing_path(@user) %> 
+  <%= button_to "Delete", user_listing_path(listing), method: :delete %>
+<% end %>

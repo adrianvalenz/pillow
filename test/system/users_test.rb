@@ -1,7 +1,7 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-  include Custom::TestHelpers::Sorcery
+  include Custom::Sorcery::TestHelpers
 
   setup do
     @user = users(:one)
@@ -11,6 +11,11 @@ class UsersTest < ApplicationSystemTestCase
   test "visiting the index" do
     visit users_url
     assert_selector "h1", text: "Users"
+  end
+
+  test "should show logged in as current user email" do
+    sign_in(@user)
+    assert_text "Logged in as: #{@user.email}"
   end
 
   test "should create user" do
@@ -30,7 +35,7 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "should update User" do
-    sign_in_user(@user)
+    sign_in(@user)
     visit user_url(@user)
     click_on "Edit user profile", match: :first
     click_on "Update User"
