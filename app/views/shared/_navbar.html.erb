@@ -8,8 +8,8 @@
   <div class="nav_session_portal">
     <%= link_to "Welcome", welcome_path %>
     <% if current_user %>
-      <span>Logged in as: <%= current_user.email %></span>
-      <%= link_to "Edit user profile", edit_user_path(current_user.id) %>
+      <span>Logged in as: <%= link_to current_user.email, user_path(current_user), id: 'user-profile' %></span>
+      <%= link_to "Edit user profile", user_path(current_user) %>
       <%= button_to "Logout", :logout, method: :post, class: 'link' %>
     <% else %>
       <%= link_to "Sign in", :login %> /

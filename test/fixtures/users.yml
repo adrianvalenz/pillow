@@ -9,9 +9,6 @@ one:
   salt: <%= salt = "asdasdastr4325234324sdfds" %>
   crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
 
-# column: value
-#
 two:
   email: admin2@example.com
 
-# column: value

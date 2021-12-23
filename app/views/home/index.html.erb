@@ -1,3 +1,17 @@
-<h1>Home page</h1>
+<h1>Find a place to rest tonight!</h1>
+<p>Wanderers of the world rejoice. What happens when you cross AirBnb and Zillow? Pillow, an app to help you find a room to sleep for the night!</p>
 
 <%= link_to "All users", users_path %>
+
+<hr>
+
+<% if @listings.any? %>
+  <h2>All listings</h2>
+  <ul>
+    <% @listings.each do |listing| %>
+      <li><%= listing.title %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h2>No listings</h2>
+<% end %>

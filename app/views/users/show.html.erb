@@ -14,7 +14,14 @@
 
 <h2>User listings</h2>
 
-<% @listings.each do |listing| %>
-  <%= link_to "Edit listing: #{listing.title}", edit_user_listing_path(@user) %> 
-  <%= button_to "Delete", user_listing_path(listing), method: :delete %>
-<% end %>
+<%= link_to "Post listing", new_user_listing_path(current_user) %>
+
+<ul class="user_show_user_listings">
+  <% @user.listings.each do |listing| %>
+    <li>
+      <%= listing.title %>
+      <%= link_to "Edit listing", edit_user_listing_path(@user, listing) %>
+      <%= button_to "Delete", user_listing_path(@user, listing), method: :delete %>
+    </li>
+  <% end %>
+</ul>

@@ -3,7 +3,7 @@
 one:
   title: MyString
   description: MyText
-  zipcode: MyString
+  zipcode: 12345
   price: 1
   user: one
 

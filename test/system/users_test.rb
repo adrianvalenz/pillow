@@ -38,6 +38,7 @@ class UsersTest < ApplicationSystemTestCase
     sign_in(@user)
     visit user_url(@user)
     click_on "Edit user profile", match: :first
+    click_on "Edit this user"
     click_on "Update User"
 
     assert_text "User was successfully updated"

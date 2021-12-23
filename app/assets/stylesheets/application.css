@@ -83,3 +83,8 @@ body {
   padding: 0;
   text-align: left;
 }
+
+.user_show_user_listings {
+  display: flex;
+  gap: 2rem;
+}

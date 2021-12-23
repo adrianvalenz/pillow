@@ -9,6 +9,23 @@ class ListingsTest < ApplicationSystemTestCase
     sign_in(@user)
   end
 
+  test "listing count" do
+    assert_equal 2, Listing.count, "Listing count should be 2"
+  end
+
+  test "should see no listings on homepage if no listings exists" do
+    Listing.destroy_all
+    assert_equal 0, Listing.count, "Listing should be zero"
+    visit root_path
+    assert_text "No listings" if Listing.count == 0
+  end
+
+  test "should see all listings on homepage if listings exists" do
+    assert_equal 2, Listing.count, "Listing count should be 2"
+    visit root_path
+    assert_text "All listings" if Listing.count >= 1
+  end
+
   test "should visit new listing page" do
     visit welcome_path
     assert_text "Create a new listing!"
@@ -26,7 +43,15 @@ class ListingsTest < ApplicationSystemTestCase
     fill_in "Price", with: "200"
 
     click_on "Create Listing"
+    assert_text "#{@user.email}\'s page"
     assert_text "Listing was created successfully"
+  end
+
+  test "should get to new listing page from user page" do
+    visit root_path
+    click_link "user-profile"
+    click_on "Post listing"
+    assert_selector "h1", text: "Post a new listing!"
   end
 
   test "should display listings under user show page" do
@@ -39,11 +64,20 @@ class ListingsTest < ApplicationSystemTestCase
   end
 
   test "should update listing" do
+    visit root_path
+    click_on "All users"
     visit user_path(@user)
     assert_text "User listings"
-    click_on "Edit listing:"
-    assert_text "Edit #{@listing.title}"
+    click_link "Edit listing"
+    assert_selector "h1", text: "Update listing"
+
+    fill_in "Title", with: "an update"
+    fill_in "Description", with: "another update"
+    fill_in "Zipcode", with: "98712"
+    fill_in "Price", with: "220"
     click_on "Update Listing"
+    assert_text "#{@user.email}\'s page"
+    assert_text "Listing was successfully updated"
   end
 
   test "should delete listing" do
