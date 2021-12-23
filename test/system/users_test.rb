@@ -45,12 +45,10 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Back to users"
   end
 
-=begin
   test "should destroy User" do
-    visit user_url(@user)
+    sign_in(@user)
+    visit user_path(@user)
     click_on "Destroy this user", match: :first
-
     assert_text "User was successfully destroyed"
   end
-=end
 end
