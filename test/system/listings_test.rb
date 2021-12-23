@@ -1,4 +1,5 @@
 require "application_system_test_case"
+require "minitest/mock"
 
 class ListingsTest < ApplicationSystemTestCase
   include Custom::Sorcery::TestHelpers
@@ -15,16 +16,7 @@ class ListingsTest < ApplicationSystemTestCase
       assert_text "No listings"
     end
   end
-
-=begin
-  test "should see no listings on homepage if no listings exists" do
-    Listing.destroy_all
-    assert_equal 0, Listing.count, "Listing should be zero"
-    visit root_path
-    assert_text "No listings"# if Listing.count == 0
-  end
-=end
-
+  
   test "should see all listings on homepage if listings exists" do
     assert_equal 2, Listing.count, "Listing count should be 2"
     visit root_path
