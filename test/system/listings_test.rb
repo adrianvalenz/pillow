@@ -8,22 +8,27 @@ class ListingsTest < ApplicationSystemTestCase
     @listing = listings(:one)
     sign_in(@user)
   end
-
-  test "listing count" do
-    assert_equal 2, Listing.count, "Listing count should be 2"
+  
+  test "should show no listings if none exist" do
+    Listing.stub(:all, []) do
+      visit root_path
+      assert_text "No listings"
+    end
   end
 
+=begin
   test "should see no listings on homepage if no listings exists" do
     Listing.destroy_all
     assert_equal 0, Listing.count, "Listing should be zero"
     visit root_path
-    assert_text "No listings" if Listing.count == 0
+    assert_text "No listings"# if Listing.count == 0
   end
+=end
 
   test "should see all listings on homepage if listings exists" do
     assert_equal 2, Listing.count, "Listing count should be 2"
     visit root_path
-    assert_text "All listings" if Listing.count >= 1
+    assert_text "All listings"# if Listing.count >= 1
   end
 
   test "should visit new listing page" do
